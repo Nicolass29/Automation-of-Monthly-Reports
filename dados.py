@@ -3,12 +3,14 @@ import random
 
 
 def gerar_dados(linhas, caminho_entrada):
+    # Lista de projetos, meses e clientes fictícios
     projetos = ['Projeto A', 'Projeto B', 'Projeto C', 'Projeto D']
     meses = pd.date_range(start='2024-01-01', periods=24,
                           freq='ME').strftime('%b/%Y').tolist()
     clientes = ['Empresa 1', 'Empresa 2',
                 'Empresa 3', 'Empresa 4', 'Empresa 5']
 
+    # Dicionário com dados aleatórios para cada coluna
     data = {
         'Projeto': [random.choice(projetos) for _ in range(linhas)],
         'Finalização': [random.choice(meses) for _ in range(linhas)],
@@ -18,6 +20,7 @@ def gerar_dados(linhas, caminho_entrada):
         'Satisfacao': [random.randint(1, 10) for _ in range(linhas)]
     }
 
+    # Criação do DataFrame e salvamento em um arquivo Excel
     df = pd.DataFrame(data)
     df.to_excel(caminho_entrada, index=False)
     return df
